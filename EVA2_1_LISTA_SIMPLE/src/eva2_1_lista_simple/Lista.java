@@ -23,11 +23,12 @@ public class Lista {
             temp = temp.getSiguiente();
 
         }
+        
     }
 
     //AGREGAR UN NODO AL FINAL DE LA LISTA
     //SOLUCION 1: O(N)
-    public void agreagar(int valor) {
+    public void agregar(int valor) {
         Nodo nuevoNodo = new Nodo(valor);
 
         //VERIFICAR SI HAY NODOS EN LA LISTA
@@ -62,12 +63,35 @@ public class Lista {
         return cont;
     }
 
-    public void agregarEn(int valor, int pos) {
+    public void insertarEn(int valor, int pos) throws Exception {
             //¿que debemos validar?
         //insertar en una posicion no válida
-        //posiciones negativas
+        //posiciones negativas (listo)
         //posiciones mayores a la cantidad de elementos
-
+        
+        int cantNodos = tamaLista();
+        
+        if(pos < 0)
+            throw new Exception("No puede insertar unu nodo en una posición negativa");
+        else if(pos >= cantNodos)
+            throw new Exception(pos + " no es una posición valida en la lista");
+        else{
+            Nodo nuevoNodo = new Nodo(valor);
+            if(pos == 0){ //Insertar al inicio de la tabla
+                nuevoNodo.setSiguiente(inicio);
+                inicio = nuevoNodo;
+            }else{
+                 Nodo temp = inicio;
+                 int cont = 0;
+                while (cont < (pos - 1)){
+                    temp = temp.getSiguiente();
+                      cont++;
+                }
+                System.out.println(temp.getValor() + " - ");
+                        
+                
+            }
+        }
     }
 
 }
