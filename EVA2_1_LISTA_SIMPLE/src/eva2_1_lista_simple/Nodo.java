@@ -13,7 +13,7 @@ public class Nodo {
     //EL FINAL DE LA LISTA SE INDICA CON NULL
     //POR ESO SIGUIENTE = NULL;
     public Nodo() {
-        this.siguiente = null;  
+        this.siguiente = null;
     }
 
     public Nodo(int valor) {
@@ -36,8 +36,5 @@ public class Nodo {
     public void setSiguiente(Nodo siguiente) {
         this.siguiente = siguiente;
     }
-    
-    
-    
-    
+
 }

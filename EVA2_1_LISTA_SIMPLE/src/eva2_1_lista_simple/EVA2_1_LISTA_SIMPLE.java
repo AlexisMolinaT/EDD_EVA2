@@ -18,30 +18,32 @@ public class EVA2_1_LISTA_SIMPLE {
         miLista.agregar(40);//3 <----- inserción
         miLista.agregar(50);//4
         miLista.agregar(60);//5
-        try{
+        miLista.imprimir();
+        try {
             miLista.insertarEn(70, 3);
-        } catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
 
         ///int[] arreglo = new int [1000000];
-        
-       /*for (int i = 0; i < 1000000; i++) { //(N^2)
-            miLista.agregar(1000);*/
-            
+            /*for (int i = 0; i < 1000000; i++) { //(N^2)
+             miLista.agregar(1000);*/
         }
         //System.out.println("Conteo de nodos: " + miLista.tamaLista());
+        System.out.println("");
+        miLista.imprimir();
+        System.out.println("");
+        miLista.vaciarLista();
         miLista.imprimir();
         
         
         /*miLista.agreagar(10);
-        miLista.agreagar(20);
-        miLista.agreagar(30);
-        miLista.agreagar(40);
-        miLista.agreagar(50);
-        miLista.agreagar(60);
-        miLista.imprimir();
-        */
-                
+         miLista.agreagar(20);
+         miLista.agreagar(30);
+         miLista.agreagar(40);
+         miLista.agreagar(50);
+         miLista.agreagar(60);
+         miLista.imprimir();
+         */
     }
-    
+
 }

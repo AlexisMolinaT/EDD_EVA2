@@ -16,6 +16,9 @@ public class Lista {
     }
 
     public void imprimir() {
+        if(inicio == null)
+            System.out.println("LISTA VACIA :(");
+        else{
         Nodo temp = inicio;
         //¿COMO MUEVO A TEMP?
         while (temp != null) { //EL WHILE SIRVE PARA MOVERNOS  
@@ -23,9 +26,9 @@ public class Lista {
             temp = temp.getSiguiente();
 
         }
-        
-    }
 
+    }
+    }
     //AGREGAR UN NODO AL FINAL DE LA LISTA
     //SOLUCION 1: O(N)
     public void agregar(int valor) {
@@ -64,34 +67,52 @@ public class Lista {
     }
 
     public void insertarEn(int valor, int pos) throws Exception {
-            //¿que debemos validar?
+        //¿que debemos validar?
         //insertar en una posicion no válida
         //posiciones negativas (listo)
         //posiciones mayores a la cantidad de elementos
-        
+
         int cantNodos = tamaLista();
-        
-        if(pos < 0)
+
+        if (pos < 0) {
             throw new Exception("No puede insertar unu nodo en una posición negativa");
-        else if(pos >= cantNodos)
+        } else if (pos >= cantNodos) {
             throw new Exception(pos + " no es una posición valida en la lista");
-        else{
+        } else {
             Nodo nuevoNodo = new Nodo(valor);
-            if(pos == 0){ //Insertar al inicio de la tabla
+            if (pos == 0) { //Insertar al inicio de la tabla
                 nuevoNodo.setSiguiente(inicio);
                 inicio = nuevoNodo;
-            }else{
-                 Nodo temp = inicio;
-                 int cont = 0;
-                while (cont < (pos - 1)){
+            } else {
+                Nodo temp = inicio;
+                int cont = 0;
+                while (cont < (pos - 1)) {
                     temp = temp.getSiguiente();
-                      cont++;
+                    cont++;
                 }
-                System.out.println(temp.getValor() + " - ");
-                        
+                //System.out.println(temp.getValor() + " - ");
                 
+                nuevoNodo.setSiguiente(temp.getSiguiente());
+                temp.setSiguiente(nuevoNodo);
+
             }
         }
     }
+        public void vaciarLista(){
+            inicio = null;
+            fin = null;
+        }
+        
+        public void borrarEn(int pos) throws Exception{
+         int cantNodos = tamaLista();
 
+        if (pos < 0) {
+            throw new Exception("No puede insertar unu nodo en una posición negativa");
+        } else if (pos >= cantNodos) {
+            throw new Exception(pos + " no es una posición valida en la lista");
+        } else {
+          
+            
+       }
+        }
 }
