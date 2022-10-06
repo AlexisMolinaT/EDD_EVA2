@@ -16,19 +16,20 @@ public class Lista {
     }
 
     public void imprimir() {
-        if(inicio == null)
+        if (inicio == null) {
             System.out.println("LISTA VACIA :(");
-        else{
-        Nodo temp = inicio;
-        //¿COMO MUEVO A TEMP?
-        while (temp != null) { //EL WHILE SIRVE PARA MOVERNOS  
-            System.out.print(temp.getValor() + " - ");
-            temp = temp.getSiguiente();
+        } else {
+            Nodo temp = inicio;
+            //¿COMO MUEVO A TEMP?
+            while (temp != null) { //EL WHILE SIRVE PARA MOVERNOS  
+                System.out.print(temp.getValor() + " - ");
+                temp = temp.getSiguiente();
+
+            }
 
         }
+    }
 
-    }
-    }
     //AGREGAR UN NODO AL FINAL DE LA LISTA
     //SOLUCION 1: O(N)
     public void agregar(int valor) {
@@ -91,28 +92,60 @@ public class Lista {
                     cont++;
                 }
                 //System.out.println(temp.getValor() + " - ");
-                
+
                 nuevoNodo.setSiguiente(temp.getSiguiente());
                 temp.setSiguiente(nuevoNodo);
 
             }
         }
     }
-        public void vaciarLista(){
-            inicio = null;
-            fin = null;
-        }
-        
-        public void borrarEn(int pos) throws Exception{
-         int cantNodos = tamaLista();
+
+    public void vaciarLista() {
+        inicio = null;
+        fin = null;
+    }
+
+    public void borrarEn(int pos) throws Exception {
+        int cantNodos = tamaLista();
 
         if (pos < 0) {
             throw new Exception("No puede insertar unu nodo en una posición negativa");
         } else if (pos >= cantNodos) {
             throw new Exception(pos + " no es una posición valida en la lista");
+        } else //PIENSEN COMO PROGRAMADORES:
+        //QUE PUEDE SALIR MAL SI: 
+        if (cantNodos == 1) {
+            vaciarLista();
         } else {
-          
-            
-       }
+            //BORRAR EL PRIMER NODO
+            //BORRAR NODO INTERMEDIO
+            //BORRAR EL ÚLTIMO NODO
+            if (pos == 0) {
+                inicio = inicio.getSiguiente();
+            } else {
+                Nodo temp = inicio;
+                int cont = 0;
+                while (cont < (pos - 1)) {
+                    temp = temp.getSiguiente();
+                    cont++;
+                }
+                //YA ESTOY EN EL NODO PREVIO
+                Nodo objSig = temp.getSiguiente(); //MAS FACIL DE LEER 
+                temp.setSiguiente(objSig.getSiguiente());
+                if(pos == cantNodos - 1){ //RECONECTAMOS A FIN
+                    fin = temp;
+                }
+            }
         }
+    }
+}
+public int obtenValorEn(int pos) throws Exception{
+int cantNodos = tamaLista();
+
+        if (pos < 0) {
+            throw new Exception("No puede insertar unu nodo en una posición negativa");
+        } else if (pos >= cantNodos) {
+            throw new Exception(pos + " no es una posición valida en la lista");
+        } else 
+
 }

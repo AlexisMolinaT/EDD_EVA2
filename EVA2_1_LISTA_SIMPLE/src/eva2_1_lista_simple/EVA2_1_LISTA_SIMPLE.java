@@ -1,5 +1,8 @@
 package eva2_1_lista_simple;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Alexis M.
@@ -24,7 +27,7 @@ public class EVA2_1_LISTA_SIMPLE {
         } catch (Exception ex) {
             ex.printStackTrace();
 
-        ///int[] arreglo = new int [1000000];
+            ///int[] arreglo = new int [1000000];
             /*for (int i = 0; i < 1000000; i++) { //(N^2)
              miLista.agregar(1000);*/
         }
@@ -35,7 +38,15 @@ public class EVA2_1_LISTA_SIMPLE {
         miLista.vaciarLista();
         miLista.imprimir();
         
-        
+       
+
+        try {
+            miLista.borrarEn(6);
+        } catch (Exception ex) {
+            Logger.getLogger(EVA2_1_LISTA_SIMPLE.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        miLista.imprimir();
+
         /*miLista.agreagar(10);
          miLista.agreagar(20);
          miLista.agreagar(30);
