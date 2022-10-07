@@ -8,15 +8,22 @@ public class Lista {
 
     private Nodo inicio;
     private Nodo fin;
+    private int cont = 0;
 
     //POR DEFAULT, LA LISTA ESRA VACIA
     public Lista() {
         this.inicio = null;  //NO HAY NODOS EN LA LISTA
         this.fin = null;
+        this.cont = 0;
     }
-
+    public boolean listaVacia(){
+        if (inicio == null)
+            return true;
+        else
+            return false;
+    }
     public void imprimir() {
-        if (inicio == null) {
+        if (listaVacia()) {
             System.out.println("LISTA VACIA :(");
         } else {
             Nodo temp = inicio;
@@ -53,18 +60,19 @@ public class Lista {
             fin.setSiguiente(nuevoNodo);
             fin = nuevoNodo;
         }
+        cont++;
     }
 
     public int tamaLista() {
-        int cont = 0;
+        /*int cont = 0;
         Nodo temp = inicio;
         //¿COMO MUEVO A TEMP?
         while (temp != null) {
             cont++;
             temp = temp.getSiguiente();
 
-        }
-        return cont;
+        }*/
+        return this.cont;
     }
 
     public void insertarEn(int valor, int pos) throws Exception {
@@ -97,12 +105,14 @@ public class Lista {
                 temp.setSiguiente(nuevoNodo);
 
             }
+            this.cont++;
         }
     }
 
     public void vaciarLista() {
         inicio = null;
         fin = null;
+        cont = 0;
     }
 
     public void borrarEn(int pos) throws Exception {
@@ -132,20 +142,32 @@ public class Lista {
                 //YA ESTOY EN EL NODO PREVIO
                 Nodo objSig = temp.getSiguiente(); //MAS FACIL DE LEER 
                 temp.setSiguiente(objSig.getSiguiente());
-                if(pos == cantNodos - 1){ //RECONECTAMOS A FIN
+                if (pos == cantNodos - 1) { //RECONECTAMOS A FIN
                     fin = temp;
                 }
             }
+            this.cont--;
         }
     }
-}
-public int obtenValorEn(int pos) throws Exception{
-int cantNodos = tamaLista();
+
+    public int obtenValorEn(int pos) throws Exception {
+        int cantNodos = tamaLista();
+        int valor = 0;
 
         if (pos < 0) {
             throw new Exception("No puede insertar unu nodo en una posición negativa");
         } else if (pos >= cantNodos) {
             throw new Exception(pos + " no es una posición valida en la lista");
-        } else 
+        } else {
+            Nodo temp = inicio;
+                int cont = 0;
+                while (cont < pos) {
+                    temp = temp.getSiguiente();
+                    cont++;
+                }
+                valor = temp.getValor();
 
+        }
+        return valor;
+    }
 }
