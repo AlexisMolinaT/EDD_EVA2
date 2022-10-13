@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package eva2_3_lista_doble;
 
 /**
@@ -66,7 +61,80 @@ public class ListaDoble {
         cont++;
     }
     
+    public void insertarEn(int valor, int pos) throws Exception {
+        //¿que debemos validar?
+        //insertar en una posicion no válida
+        //posiciones negativas (listo)
+        //posiciones mayores a la cantidad de elementos
+
+        int cantNodos = tamaLista();
+
+        if (pos < 0) {
+            throw new Exception("No puede insertar unu nodo en una posición negativa");
+        } else if (pos >= cantNodos) {
+            throw new Exception(pos + " no es una posición valida en la lista");
+        } else {
+            Nodo nuevoNodo = new Nodo(valor);
+            if (pos == 0) { //Insertar al inicio de la tabla
+                nuevoNodo.setSiguiente(inicio);
+                inicio.setPrevio(nuevoNodo);
+                inicio = nuevoNodo;
+            } else {
+                Nodo temp = inicio;
+                int cont = 0;
+                while (cont < pos) {
+                    temp = temp.getSiguiente();
+                    cont++;
+                }
+                //Y AHORA?
+                nuevoNodo.setSiguiente(temp);
+                nuevoNodo.setPrevio(temp.getPrevio());
+                temp.getPrevio().setSiguiente(nuevoNodo);
+                temp.setPrevio(nuevoNodo);
+                
+
+            }
+            this.cont++;
+        }
+    }
     
+    
+     public void borrarEn(int pos) throws Exception {
+        int cantNodos = tamaLista();
+
+        if (pos < 0) {
+            throw new Exception("No puede insertar unu nodo en una posición negativa");
+        } else if (pos >= cantNodos) {
+            throw new Exception(pos + " no es una posición valida en la lista");
+        } else //PIENSEN COMO PROGRAMADORES:
+        //QUE PUEDE SALIR MAL SI: 
+        if (cantNodos == 1) {
+            vaciarLista();
+        } else {
+            //BORRAR EL PRIMER NODO
+            //BORRAR NODO INTERMEDIO
+            //BORRAR EL ÚLTIMO NODO
+            if (pos == 0) {
+                inicio = inicio.getSiguiente();
+            } else { //¿Qué cambios se hacen aquí? (lista doble)
+                Nodo temp = inicio;
+                int cont = 0;
+                while (cont < (pos - 1)) {
+                    temp = temp.getSiguiente();
+                    cont++;
+                }
+                //YA ESTOY EN EL NODO PREVIO
+                Nodo objSig = temp.getSiguiente(); //MAS FACIL DE LEER 
+                temp.setSiguiente(objSig.getSiguiente());
+                if (pos == cantNodos - 1) { //RECONECTAMOS A FIN
+                    fin = temp;
+                }
+            }
+            this.cont--;
+        }
+    }
+     
+     
     public void vaciarLista() {
         inicio = null;
         fin = null;
