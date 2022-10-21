@@ -61,16 +61,6 @@ public class MyStack {
         cont++;
     }
 
-    public Integer peek() {
-        //verifucar si la lista esta vacia
-        //si no esta vacia, regresar el valor
-        if (listaVacia()) {
-            return null;
-        } else {
-            return inicio.getValor();
-        }
-    }
-
     public Integer poll() throws Exception {
         //verifucar si la lista esta vacia
         //si no esta vacia, regresar el valor
@@ -80,6 +70,34 @@ public class MyStack {
             int valor = inicio.getValor();
             //borra el nodo
             borrarEn(0);
+            return valor;
+        }
+    }
+
+    public void push(int valor) {
+        agregar(valor);
+    }
+
+    public Integer peek() {
+        //verifucar si la lista esta vacia
+        //si no esta vacia, regresar el valor
+        if (listaVacia()) {
+            return null;
+        } else {
+            return fin.getValor();
+        }
+
+    }
+
+    public Integer pop() throws Exception {
+        //verifucar si la lista esta vacia
+        //si no esta vacia, regresar el valor
+        if (listaVacia()) {
+            return null;
+        } else {
+            int valor = fin.getValor();
+            //borra el nodo
+            borrarEn(tamaLista() - 1);
             return valor;
         }
     }
@@ -140,15 +158,18 @@ public class MyStack {
             } else { //¿Qué cambios se hacen aquí? (lista doble)
                 Nodo temp = inicio;
                 int cont = 0;
-                while (cont < (pos - 1)) {
+                while (cont < pos) {
                     temp = temp.getSiguiente();
                     cont++;
                 }
                 //YA ESTOY EN EL NODO PREVIO
-                Nodo objSig = temp.getSiguiente(); //MAS FACIL DE LEER 
-                temp.setSiguiente(objSig.getSiguiente());
+                Nodo objPrev = temp.getPrevio(); //MAS FACIL DE LEER 
+                Nodo objSig = temp.getSiguiente();
+                objPrev.setSiguiente(objSig);
                 if (pos == cantNodos - 1) { //RECONECTAMOS A FIN
-                    fin = temp;
+                    fin = objPrev;
+                } else {
+
                 }
             }
             this.cont--;
