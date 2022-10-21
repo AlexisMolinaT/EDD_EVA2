@@ -39,6 +39,21 @@ public class ListaDoble {
         }
     }
 
+    public void imprimirInv() {
+        if (listaVacia()) {
+            System.out.println("LISTA VACIA :(");
+        } else {
+            Nodo temp = fin;
+            //¿COMO MUEVO A TEMP?
+            while (temp != null) { //EL WHILE SIRVE PARA MOVERNOS  
+                System.out.print(temp.getValor() + " - ");
+                temp = temp.getPrevio();
+
+            }
+
+        }
+    }
+
     public int tamaLista() {
         return this.cont;
     }
@@ -60,7 +75,7 @@ public class ListaDoble {
         }
         cont++;
     }
-    
+
     public void insertarEn(int valor, int pos) throws Exception {
         //¿que debemos validar?
         //insertar en una posicion no válida
@@ -91,15 +106,13 @@ public class ListaDoble {
                 nuevoNodo.setPrevio(temp.getPrevio());
                 temp.getPrevio().setSiguiente(nuevoNodo);
                 temp.setPrevio(nuevoNodo);
-                
 
             }
             this.cont++;
         }
     }
-    
-    
-     public void borrarEn(int pos) throws Exception {
+
+    public void borrarEn(int pos) throws Exception {
         int cantNodos = tamaLista();
 
         if (pos < 0) {
@@ -119,22 +132,24 @@ public class ListaDoble {
             } else { //¿Qué cambios se hacen aquí? (lista doble)
                 Nodo temp = inicio;
                 int cont = 0;
-                while (cont < (pos - 1)) {
+                while (cont < pos) {
                     temp = temp.getSiguiente();
                     cont++;
                 }
                 //YA ESTOY EN EL NODO PREVIO
-                Nodo objSig = temp.getSiguiente(); //MAS FACIL DE LEER 
-                temp.setSiguiente(objSig.getSiguiente());
+                Nodo objPrev = temp.getPrevio(); //MAS FACIL DE LEER 
+                Nodo objSig = temp.getSiguiente();
+                objPrev.setSiguiente(objSig);
                 if (pos == cantNodos - 1) { //RECONECTAMOS A FIN
-                    fin = temp;
+                    fin = objPrev;
+                } else {
+
                 }
             }
             this.cont--;
         }
     }
-     
-     
+
     public void vaciarLista() {
         inicio = null;
         fin = null;
@@ -151,19 +166,15 @@ public class ListaDoble {
             throw new Exception(pos + " no es una posición valida en la lista");
         } else {
             Nodo temp = inicio;
-                int cont = 0;
-                while (cont < pos) {
-                    temp = temp.getSiguiente();
-                    cont++;
-                }
-                valor = temp.getValor();
+            int cont = 0;
+            while (cont < pos) {
+                temp = temp.getSiguiente();
+                cont++;
+            }
+            valor = temp.getValor();
 
         }
         return valor;
     }
-    
-    
-    
-    
-    
+
 }
