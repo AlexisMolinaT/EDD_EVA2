@@ -140,15 +140,18 @@ public class MyQueue {
             } else { //¿Qué cambios se hacen aquí? (lista doble)
                 Nodo temp = inicio;
                 int cont = 0;
-                while (cont < (pos - 1)) {
+                while (cont < pos) {
                     temp = temp.getSiguiente();
                     cont++;
                 }
                 //YA ESTOY EN EL NODO PREVIO
-                Nodo objSig = temp.getSiguiente(); //MAS FACIL DE LEER 
-                temp.setSiguiente(objSig.getSiguiente());
+                Nodo objPrev = temp.getPrevio(); //MAS FACIL DE LEER 
+                Nodo objSig = temp.getSiguiente();
+                objPrev.setSiguiente(objSig);
                 if (pos == cantNodos - 1) { //RECONECTAMOS A FIN
-                    fin = temp;
+                    fin = objPrev;
+                } else {
+
                 }
             }
             this.cont--;
