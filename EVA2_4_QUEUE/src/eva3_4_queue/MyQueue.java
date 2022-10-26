@@ -151,6 +151,7 @@ public class MyQueue {
                 if (pos == cantNodos - 1) { //RECONECTAMOS A FIN
                     fin = objPrev;
                 } else {
+                    objSig.setPrevio(objPrev);
 
                 }
             }
