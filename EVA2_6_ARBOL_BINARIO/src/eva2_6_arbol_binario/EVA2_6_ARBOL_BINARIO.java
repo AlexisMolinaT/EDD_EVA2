@@ -21,8 +21,16 @@ public class EVA2_6_ARBOL_BINARIO {
         arbol.agregar(20);
         arbol.agregar(16);
         arbol.agregar(16); //ESTE ESTA REPETIDO
-        
+
+        System.out.println("");
+        System.out.println("IN-ORDER");
         arbol.inOrder();
+        System.out.println("POST-ORDER");
+        arbol.postOrder();
+        System.out.println("PRE-ORDER");
+        arbol.preOrder();
+        System.out.println("");
+        
     }
 
 }

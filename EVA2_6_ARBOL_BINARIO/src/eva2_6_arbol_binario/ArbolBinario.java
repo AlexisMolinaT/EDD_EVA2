@@ -65,4 +65,33 @@ public class ArbolBinario {
                 inOrderRecu(nodo.getDerecha());
             }
         }
+        
+        public void postOrder(){
+            postOrderRecu(root);
+            System.out.println("");
+        }
+        //metodo privado recursivo
+        private void postOrderRecu(Nodo nodo){
+            if(nodo != null){
+                postOrderRecu(nodo.getIzquierda());
+                postOrderRecu(nodo.getDerecha());
+                System.out.print(nodo.getValor() + " - ");
+            }
+        }
+        
+         public void preOrder(){
+            preOrderRecu(root);
+            System.out.println("");
+        }
+        //metodo privado recursivo
+        private void preOrderRecu(Nodo nodo){
+            if(nodo != null){
+                System.out.print(nodo.getValor() + " - ");
+                preOrderRecu(nodo.getIzquierda());
+                preOrderRecu(nodo.getDerecha());
+            }
+        }
+        
+        
+        //COMO BORRAMOS NODOS??
 }
